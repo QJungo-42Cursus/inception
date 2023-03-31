@@ -1,31 +1,33 @@
 version: '3' # TODO quelle version ?
 
 services:
-  mariaDB:
+  maria_db:
+    build: ./maria_db
     # TODO image: mysql:5.7
     volumes:
-      - db_data:/var/mysql # TODO ici ?
+      - wordpress_db:/var/wordpress_db # TODO ici ?
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: pass # TODO
+      #environment:
+      #  MYSQL_ROOT_PASSWORD: pass
 
-  nginxTLS:
-    image: mysql:5.7
-    volumes:
-      - db_data:/var/mysql
+  nginx:
+    build: ./nginx
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD:
+      #environment:
+      #  MYSQL_ROOT_PASSWORD:
 
   wordpress:
     depends_on:
-      - nginx_tls
-    image: wordpress:latest
+      - nginx
+      - maria_db 
+    build: ./wordpress
+    volumes:
+      - wordpress_files:/var/wordpress_files # TODO ici ?
     ports:
       - "8000:80"
     restart: always
-    environment:
-      ENV_VAR: any
+      #environment:
+      #  ENV_VAR: any
 
 volumes:
   wordpress_db: {}
