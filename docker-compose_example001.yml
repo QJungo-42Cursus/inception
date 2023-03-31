@@ -1,0 +1,23 @@
+version: '3' # TODO quelle version ?
+
+services:             # tout nos services
+  db:                 # un nom de service (qu'on choisi nous)
+    image: mysql:5.7  # l'image qu'on veut
+    volumes:          # permet de save les donnees a un endroit donne
+      - db_data:/var/mysql
+    restart: always   # si le service crash, restart auto
+    environment:      # variables d'env
+      MYSQL_ROOT_PASSWORD: somewordpassword
+
+  wordpress:
+    depends_on:       # indique qu'il depent de "db"
+      - db
+    image: wordpress:latest
+    ports:            # port ou on expose le service
+      - "8000:80"
+    restart: always
+    environment:
+      ENV_VAR: any
+
+volumes:
+  db_data: {}         # TODO ca fait quoi les {} ?

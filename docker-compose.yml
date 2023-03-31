@@ -1,0 +1,34 @@
+version: '3' # TODO quelle version ?
+
+services:
+  mariaDB:
+    # TODO image: mysql:5.7
+    volumes:
+      - db_data:/var/mysql # TODO ici ?
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: pass # TODO
+
+  nginxTLS:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD:
+
+  wordpress:
+    depends_on:
+      - nginx_tls
+    image: wordpress:latest
+    ports:
+      - "8000:80"
+    restart: always
+    environment:
+      ENV_VAR: any
+
+volumes:
+  wordpress_db: {}
+  wordpress_files: {} # TODO ca fait quoi les {} ?
+
+# TODO docker-network "qui fera le lien entre vos containers"
