@@ -1,36 +1,30 @@
-version: '3' # TODO quelle version ?
+version: '3'
 
 services:
-  maria_db:
-    build: ./maria_db
-    # TODO image: mysql:5.7
-    volumes:
-      - wordpress_db:/var/wordpress_db # TODO ici ?
+  mariadb:
+    build: ./requirements/mariadb
     restart: always
-      #environment:
-      #  MYSQL_ROOT_PASSWORD: pass
+    volumes:
+      - db:/home/qjungo/data/db
 
   nginx:
-    build: ./nginx
+    build: ./requirements/nginx
     restart: always
-      #environment:
-      #  MYSQL_ROOT_PASSWORD:
+    ports:
+      - "80:80"
+      - "443:443"
 
   wordpress:
+    build: ./requirements/wordpress
+    restart: always
     depends_on:
       - nginx
-      - maria_db 
-    build: ./wordpress
+      - mariadb 
     volumes:
-      - wordpress_files:/var/wordpress_files # TODO ici ?
-    ports:
-      - "8000:80"
-    restart: always
-      #environment:
-      #  ENV_VAR: any
+      - files:/home/qjungo/data/files
 
 volumes:
-  wordpress_db: {}
-  wordpress_files: {} # TODO ca fait quoi les {} ?
+  db: {}
+  files: {} # TODO ca fait quoi les {} ?
 
 # TODO docker-network "qui fera le lien entre vos containers"
