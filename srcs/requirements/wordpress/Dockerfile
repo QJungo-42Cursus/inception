@@ -1,5 +1,21 @@
-MAINTAINER Quentin Jungo <qjungo@student.42lausanne.ch>
-
-# https://github.com/docker-library/wordpress/blob/5f5172057791d1deb1919fdd1c5c45e7daae3362/latest/php8.0/fpm/Dockerfile
 FROM wordpress:6.2-fpm
 
+MAINTAINER Quentin Jungo <qjungo@student.42lausanne.ch>
+
+# Install dependencies
+RUN sudo apt update
+RUN sudo apt install \
+						apache2 \
+						ghostscript \
+						libapache2-mod-php \
+						mysql-server \
+						php \
+						php-bcmath \
+						php-curl \
+						php-imagick \
+						php-intl \
+						php-json \
+						php-mbstring \
+						php-mysql \
+						php-xml \
+						php-zip
