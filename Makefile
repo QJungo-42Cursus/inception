@@ -1,3 +1,12 @@
+SRC = srcs/docker-compose.yml
+
 all:
-	@echo "run le docker-compose.yml !";
-	@#docker-compose up;
+	docker-compose -f $(SRC) up --build -d
+
+down:
+	docker compose -f $(SRC) down
+
+clean:
+	docker system prune --all --force --volumes
+
+.PHONY: all down clean

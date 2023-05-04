@@ -1,30 +1,62 @@
 version: '3'
 
+volumes:
+  db:
+    driver: local
+    name: db
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/qjungo/inception/data/db
+  files:
+    driver: local
+    name: files
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/qjungo/inception/data/files
+
+networks:
+  inception-network:
+    name: inception-network
+    driver: bridge
+
 services:
-  mariadb:
-    build: ./requirements/mariadb
-    restart: always
+  wordpress:
+    container_name: wordpress
+    build: requirements/wordpress
+    restart: unless-stopped
+    networks:
+      - inception-network
+    depends_on:
+      - mariadb 
     volumes:
-      - db:/home/qjungo/data/db
+      - files:/var/www/html
+    env_file:
+      - .env
 
   nginx:
-    build: ./requirements/nginx
-    restart: always
+    container_name: nginx
+    build: requirements/nginx
+    restart: unless-stopped
     ports:
       - "80:80"
       - "443:443"
-
-  wordpress:
-    build: ./requirements/wordpress
-    restart: always
+    networks:
+      - inception-network
     depends_on:
-      - nginx
-      - mariadb 
+      - wordpress
     volumes:
-      - files:/home/qjungo/data/files
+      - files:/var/www/html
 
-volumes:
-  db: {}
-  files: {} # TODO ca fait quoi les {} ?
+  mariadb:
+    container_name: mariadb
+    build: requirements/mariadb
+    restart: unless-stopped
+    networks:
+      - inception-network
+    volumes:
+      - db:/var/lib/mysql
+    env_file:
+      - .env
 
-# TODO docker-network "qui fera le lien entre vos containers"
