@@ -1,14 +1,13 @@
-FROM wordpress:6.2-fpm
+FROM debian:buster
 
 MAINTAINER Quentin Jungo <qjungo@student.42lausanne.ch>
 
 # Install dependencies
-RUN sudo apt update
-RUN sudo apt install \
-						apache2 \
+RUN apt update  -y
+RUN apt install -y \
+						wget \
+						libzip-dev \
 						ghostscript \
-						libapache2-mod-php \
-						mysql-server \
 						php \
 						php-bcmath \
 						php-curl \
@@ -19,3 +18,9 @@ RUN sudo apt install \
 						php-mysql \
 						php-xml \
 						php-zip
+
+COPY ./tools /var/www/
+
+RUN chmod +x /var/www/create-wp.sh
+
+ENTRYPOINT ["/var/www/create-wp.sh"]

@@ -16,4 +16,4 @@ RUN mkdir -p /run/nginx
 COPY conf/config /etc/nginx/conf.d/default.conf
 
 # Start nginx
-ENTRYPOINT ["nginx", "-g", "daemon off"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
