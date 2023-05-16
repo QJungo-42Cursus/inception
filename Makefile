@@ -1,10 +1,12 @@
 SRC = srcs/docker-compose.yml
 RM = rm -rf
+NETWORK = inception-network
 
 all:
 	docker-compose -f $(SRC) up --build -d
 
 down:
+	# docker network rm $(NETWORK)
 	docker compose -f $(SRC) down
 
 clean:
@@ -16,4 +18,6 @@ ls:
 	docker ps -a
 	docker images ls
 
-.PHONY: all down clean ls
+re: down clean all
+
+.PHONY: all down clean re ls

@@ -3,6 +3,8 @@
 if [ ! -f /var/www/html/wp-config.php ]; then
 	cd /var/www/html
 	rm index.html
+	touch index.html
+	echo "<html><head><title>Qjungo</title></head><body><h1>Qjungo</h1></body></html>" >> index.html
 	wget http://wordpress.org/latest.tar.gz
 	tar xfz latest.tar.gz
 	mv wordpress/* .
