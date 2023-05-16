@@ -12,4 +12,7 @@ clean:
 	$(RM) /home/qjungo/inception/data/db/*
 	$(RM) /home/qjungo/inception/data/files/*
 
-.PHONY: all down clean
+ls:
+	docker ps -a
+
+.PHONY: all down clean ls
