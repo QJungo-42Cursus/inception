@@ -2,6 +2,6 @@
 
 nginx -g "daemon off;"
 
-while true; do
-    sleep 2
-done
+# while true; do
+#     sleep 2
+# done
