@@ -1,11 +1,8 @@
 #!/bin/sh
 
-#if [ -f ./wp-config.php ]
-#then
-#	echo "Wordpress already installed"
-#else
 if [ ! -f /var/www/html/wp-config.php ]; then
-	cd /var/www/html && echo "Downloading Wordpress" > caca
+	cd /var/www/html
+	rm index.html
 	wget http://wordpress.org/latest.tar.gz
 	tar xfz latest.tar.gz
 	mv wordpress/* .
@@ -20,7 +17,12 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 fi
 
 while true; do
-	sleep 5
+	sleep 2
 done
+
+# while ! mysqladmin ping -h"$MYSQL_HOSTNAME" --silent; do
+# 	echo "Waiting for MySQL server $MYSQL_HOSTNAME to be available..."
+# 	sleep 2
+# done
 
 exec "$@"
