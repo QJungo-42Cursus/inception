@@ -17,9 +17,3 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 fi
 
 php-fpm7.3 -F;
-
-# systemctl start php-fpm
-
-while true; do
-	sleep 1
-done

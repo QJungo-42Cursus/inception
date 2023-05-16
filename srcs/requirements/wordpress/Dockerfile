@@ -15,4 +15,6 @@ COPY ./conf/php-pfm.conf /etc/php/7.3/fpm/php-fpm.conf
 
 RUN chmod +x /usr/local/bin/create-wp.sh
 
+RUN useradd http
+
 ENTRYPOINT [ "create-wp.sh" ]
