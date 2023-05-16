@@ -4,7 +4,8 @@
 #then
 #	echo "Wordpress already installed"
 #else
-if [ ! -f ./wp-config.php ]; then
+if [ ! -f /var/www/html/wp-config.php ]; then
+	cd /var/www/html && echo "Downloading Wordpress" > caca
 	wget http://wordpress.org/latest.tar.gz
 	tar xfz latest.tar.gz
 	mv wordpress/* .
@@ -17,5 +18,9 @@ if [ ! -f ./wp-config.php ]; then
 	sed -i "s/database_name_here/$MYSQL_DATABASE/g" wp-config-sample.php
 	cp wp-config-sample.php wp-config.php
 fi
+
+while true; do
+	sleep 5
+done
 
 exec "$@"

@@ -14,5 +14,6 @@ clean:
 
 ls:
 	docker ps -a
+	docker images ls
 
 .PHONY: all down clean ls

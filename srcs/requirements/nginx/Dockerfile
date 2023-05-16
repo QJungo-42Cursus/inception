@@ -1,6 +1,6 @@
 FROM debian:buster
 
-MAINTAINER Quentin Jungo <qjungo@student.42lausanne.ch>
+LABEL maintainer="Quentin Jungo <qjungo@student.42lausanne.ch>"
 
 RUN apt-get update
 RUN apt-get install -y nginx openssl
