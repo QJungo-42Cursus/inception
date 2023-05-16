@@ -16,4 +16,10 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 	cp wp-config-sample.php wp-config.php
 fi
 
-exec "$@"
+php-fpm7.3 -F;
+
+# systemctl start php-fpm
+
+while true; do
+	sleep 1
+done

@@ -16,7 +16,6 @@ clean:
 
 ls:
 	docker ps -a
-	docker images ls
 
 re: down clean all
 

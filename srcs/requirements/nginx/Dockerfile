@@ -12,6 +12,8 @@ RUN if [ ! -f /etc/ssl/certs/nginx.crt ]; then \
 RUN mkdir -p /run/nginx
 COPY ./conf/config /etc/nginx/conf.d/default.conf
 COPY ./tools/run_nginx.sh /usr/local/bin/run_nginx.sh
+
+
 RUN chmod +x /usr/local/bin/run_nginx.sh
 
 ENTRYPOINT [ "run_nginx.sh" ]
