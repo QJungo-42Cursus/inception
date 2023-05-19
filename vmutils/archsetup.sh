@@ -114,6 +114,8 @@ git clone https://github.com/QJungo-42Cursus/inception.git
 ssh-keygen -t ed25519 -f /home/${myuser}/.ssh/id_ed25519 -P ""
 cat /etc/ssh/ssh_host_ed25519_key.pub >> /home/${myuser}/.ssh/known_hosts
 cat /home/${myuser}/.ssh/id_ed25519.pub >> /home/${myuser}/.ssh/authorized_keys
+mkdir -p /var/inception/files
+mkdir -p /var/inception/db
 exit
 eof
 }

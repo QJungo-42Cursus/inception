@@ -6,13 +6,15 @@ volumes:
     name: db
     driver_opts:
       type: none
-      device: /home/qjungo/inception/data/db
+      device: /var/inception/db
+      o: bind
   files:
     driver: local
     name: files
     driver_opts:
       type: none
-      device: /home/qjungo/inception/data/files
+      o: bind
+      device: /var/inception/files
 
 networks:
   inception-network:
