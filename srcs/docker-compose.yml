@@ -1,13 +1,13 @@
 version: '3'
 
 volumes:
-  # db:
-  #   driver: local
-  #   name: db
-  #   driver_opts:
-  #     type: none
-  #     o: bind
-  #     device: /home/qjungo/inception/data/db
+  db:
+    driver: local
+    name: db
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/qjungo/inception/data/db
   files:
     driver: local
     name: files
@@ -20,18 +20,18 @@ networks:
   inception-network:
 
 services:
-  # mariadb:
-  #   container_name: mariadb
-  #   build: requirements/mariadb
-  #   restart: unless-stopped
-  #   networks:
-  #     - inception-network
-  #   volumes:
-  #     - db:/var/lib/mysql
-  #   env_file:
-  #     - .env
-  #   ports:
-  #     - "3306:3306"
+  mariadb:
+    container_name: mariadb
+    build: requirements/mariadb
+    restart: unless-stopped
+    networks:
+      - inception-network
+    volumes:
+      - db:/var/lib/mysql
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
 
   wordpress:
     container_name: wordpress
@@ -39,8 +39,8 @@ services:
     restart: unless-stopped
     networks:
       - inception-network
-    # depends_on:
-    #   - mariadb
+    depends_on:
+      - mariadb
     volumes:
       - files:/var/www/html
     env_file:
@@ -51,7 +51,6 @@ services:
     build: requirements/nginx
     restart: unless-stopped
     ports:
-      - "80:80"
       - "443:443"
     networks:
       - inception-network
