@@ -11,10 +11,10 @@ RUN apt install -y \
 	php7.3-fpm
 
 COPY ./tools/create-wp.sh /usr/local/bin/create-wp.sh
-COPY ./conf/php-pfm.conf /etc/php/7.3/fpm/php-fpm.conf
-
-RUN chmod +x /usr/local/bin/create-wp.sh
+COPY ./conf/php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
 
 RUN useradd http
+RUN php-fpm7.3 -t
+RUN chmod +x /usr/local/bin/create-wp.sh
 
 ENTRYPOINT [ "create-wp.sh" ]

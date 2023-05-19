@@ -10,10 +10,13 @@ RUN if [ ! -f /etc/ssl/certs/nginx.crt ]; then \
         fi
 
 RUN mkdir -p /run/nginx
-COPY ./conf/config /etc/nginx/conf.d/default.conf
+COPY ./conf/* /etc/nginx/conf.d/
 COPY ./tools/run_nginx.sh /usr/local/bin/run_nginx.sh
 
 
+
 RUN chmod +x /usr/local/bin/run_nginx.sh
+
+# RUN nginx -t -c /etc/nginx/conf.d/qjungo.conf
 
 ENTRYPOINT [ "run_nginx.sh" ]

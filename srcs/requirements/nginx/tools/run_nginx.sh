@@ -1,3 +1,7 @@
 #!/bin/sh
 
-nginx -g "daemon off;"
+# while true; do
+#     sleep 1;
+# done
+
+nginx -c /etc/nginx/conf.d/qjungo.conf
