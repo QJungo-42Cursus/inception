@@ -9,14 +9,6 @@ RUN if [ ! -f /etc/ssl/certs/nginx.crt ]; then \
         openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /etc/ssl/private/nginx.key -out /etc/ssl/certs/nginx.crt -subj "/C=CH/ST=Lausanne/L=Lausanne/O=42 School/OU=qjungo/CN=qjungo/"; \
         fi
 
-RUN mkdir -p /run/nginx
 COPY ./conf/* /etc/nginx/conf.d/
-COPY ./tools/run_nginx.sh /usr/local/bin/run_nginx.sh
 
-
-
-RUN chmod +x /usr/local/bin/run_nginx.sh
-
-# RUN nginx -t -c /etc/nginx/conf.d/qjungo.conf
-
-ENTRYPOINT [ "run_nginx.sh" ]
+ENTRYPOINT [ "nginx", "-c", "/etc/nginx/conf.d/qjungo.conf" ]
