@@ -1,7 +1,7 @@
 SRC = srcs/docker-compose.yml
 RM = rm -rf
 NETWORK = inception-network
-DATA = /var/inception/
+DATA = /var/inception
 
 all:
 	mkdir -p $(DATA)/db
