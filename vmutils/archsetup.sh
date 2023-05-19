@@ -111,13 +111,12 @@ usermod -aG docker ${myuser}
 su ${myuser}
 cd
 git clone https://github.com/QJungo-42Cursus/inception.git
-
+ssh-keygen -t ed25519 -f /home/${myuser}/.ssh/id_ed25519 -P ""
+cat /etc/ssh/ssh_host_ed25519_key.pub >> /home/${myuser}/.ssh/known_hosts
+cat /home/${myuser}/.ssh/id_ed25519.pub >> /home/${myuser}/.ssh/authorized_keys
 exit
 eof
 }
-# ssh-keygen -t ed25519 -f /home/${myuser}/.ssh/id_ed25519 -P ""
-# cat /etc/ssh/ssh_host_ed25519_key.pub >> /home/${myuser}/.ssh/known_hosts
-# cat /home/${myuser}/.ssh/id_ed25519.pub >> /home/${myuser}/.ssh/authorized_keys
 
 ask_user_name () {
 	printf "username: "
