@@ -41,8 +41,6 @@ services:
       - inception-network
     # depends_on:
     #   - mariadb
-    # ports:
-    #   - "9000:9000"
     volumes:
       - files:/var/www/html
     env_file:
