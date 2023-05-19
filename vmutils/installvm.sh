@@ -1,9 +1,13 @@
 #!/bin/bash
-source ./common.sh
+export VM_PATH="${HOME}/my_vm_created_by_cli";
+export VM_NAME="vmCreatedByCLI"
+export VDI_FILE="${VM_PATH}/Archlinux_64.vdi"
+export ARCHISO_FILE="${VM_PATH}/archlinux_bootable.iso"
+export ARCHISO_VERSION="2023.03.01"
 
 create_vm () {
-	VBoxManage createvm --name "${VM_NAME}" --basefolder="${VM_PATH}" --ostype Archlinux_64 --register
-	VBoxManage modifyvm "${VM_NAME}" --nic1 bridged --bridgeadapter1 eth0 --memory=1024 --vram=16 --pae=off --rtcuseutc=on
+	VBoxManage createvm --name "archVM" --basefolder="${VM_PATH}" --ostype Archlinux_64 --register
+	VBoxManage modifyvm "archVM" --nic1 bridged --bridgeadapter1 eth0 --memory=1024 --vram=16 --pae=off --rtcuseutc=on
 }
 
 create_vdi () {
@@ -13,8 +17,8 @@ create_vdi () {
 }
 
 create_vm_sata () {
-	VBoxManage storagectl "${VM_NAME}" --name "SATA Controller" --add sata --bootable on
-	VBoxManage storageattach "${VM_NAME}" --storagectl "SATA Controller" --port 0 --device 0 --type hdd --medium "${VDI_FILE}"
+	VBoxManage storagectl "archVM" --name "SATA Controller" --add sata --bootable on
+	VBoxManage storageattach "archVM" --storagectl "SATA Controller" --port 0 --device 0 --type hdd --medium "${VDI_FILE}"
 }
 
 download_archlinux_iso () {
@@ -26,8 +30,8 @@ download_archlinux_iso () {
 }
 
 attach_archlinux_iso () {
-	VBoxManage storagectl "${VM_NAME}" --name "IDE Controller" --add ide
-	VBoxManage storageattach "${VM_NAME}" --storagectl "IDE Controller" --port 0 --device 0 --type dvddrive --medium "${ARCHISO_FILE}"
+	VBoxManage storagectl "archVM" --name "IDE Controller" --add ide
+	VBoxManage storageattach "archVM" --storagectl "IDE Controller" --port 0 --device 0 --type dvddrive --medium "${ARCHISO_FILE}"
 }
 
 # generate the folder
