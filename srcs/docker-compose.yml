@@ -5,11 +5,13 @@ volumes:
     driver: local
     name: db
     driver_opts:
+      type: none
       device: /home/qjungo/inception/data/db
   files:
     driver: local
     name: files
     driver_opts:
+      type: none
       device: /home/qjungo/inception/data/files
 
 networks:

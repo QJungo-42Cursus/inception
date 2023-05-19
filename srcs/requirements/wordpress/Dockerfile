@@ -2,8 +2,8 @@ FROM debian:buster
 
 LABEL maintainer="Quentin Jungo <qjungo@student.42lausanne.ch>"
 
-RUN apt update -y
-RUN apt install -y \
+RUN apt-get update -y
+RUN apt-get install -y \
 	wget \
 	libzip-dev \
 	ghostscript \

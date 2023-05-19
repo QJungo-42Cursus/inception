@@ -2,7 +2,7 @@ FROM debian:buster
 
 LABEL maintainer="Quentin Jungo <qjungo@student.42lausanne.ch>"
 
-RUN apt-get update
+RUN apt-get update -y
 RUN apt-get install -y nginx openssl
 
 RUN if [ ! -f /etc/ssl/certs/nginx.crt ]; then \
