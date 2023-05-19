@@ -70,8 +70,8 @@ chroot () {
 	region="Europe"
 	city="Zurich"
 
-	myhostame="panic"
-	mypw="1234"
+	myhostame="host"
+	mypw="1242"
 
 	arch-chroot /mnt << eof
 ln -sf /usr/share/zoneinfo/$region/$city /etc/localtime
@@ -110,14 +110,14 @@ systemctl enable NetworkManager
 usermod -aG docker ${myuser}
 su ${myuser}
 cd
-git clone https://github.com/t-h2o/inception
-git clone https://github.com/t-h2o/ansible-my-conf
-ssh-keygen -t ed25519 -f /home/${myuser}/.ssh/id_ed25519 -P ""
-cat /etc/ssh/ssh_host_ed25519_key.pub >> /home/${myuser}/.ssh/known_hosts
-cat /home/${myuser}/.ssh/id_ed25519.pub >> /home/${myuser}/.ssh/authorized_keys
+git clone https://github.com/QJungo-42Cursus/inception.git
+
 exit
 eof
 }
+# ssh-keygen -t ed25519 -f /home/${myuser}/.ssh/id_ed25519 -P ""
+# cat /etc/ssh/ssh_host_ed25519_key.pub >> /home/${myuser}/.ssh/known_hosts
+# cat /home/${myuser}/.ssh/id_ed25519.pub >> /home/${myuser}/.ssh/authorized_keys
 
 ask_user_name () {
 	printf "username: "
@@ -130,30 +130,30 @@ ask_user_name () {
 }
 
 
-	ask_user_name
+ask_user_name
 
-	printf "partition the disk...\n"
-	partition_the_disk
+printf "partition the disk...\n"
+partition_the_disk
 
-	printf "format the partitions...\n"
-	format_the_partitions
+printf "format the partitions...\n"
+format_the_partitions
 
-	printf "mount the file systems...\n"
-	mount_the_file_systems
+printf "mount the file systems...\n"
+mount_the_file_systems
 
-	printf "install essential packages...\n"
-	install_essential_packages
+printf "install essential packages...\n"
+install_essential_packages
 
-	printf "fstab...\n"
-	fstab
+printf "fstab...\n"
+fstab
 
-	printf "chroot...\n"
-	chroot
+printf "chroot...\n"
+chroot
 
-	printf "set the bootloader...\n"
-	bootloader
+printf "set the bootloader...\n"
+bootloader
 
-	printf "enable services...\n"
-	enable_services
+printf "enable services...\n"
+enable_services
 
-	printf "shutdown and reboot without the iso file.\n"
+printf "shutdown and reboot without the iso file.\n"
