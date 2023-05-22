@@ -3,4 +3,4 @@
   - /ect/hosts >> add "qjungo.42.fr" 127.0.0.1
   - install docker + enable service
   - ?
-- 
+- [ ] check path /home/user/data
