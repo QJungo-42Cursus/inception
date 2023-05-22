@@ -1,5 +1,5 @@
 #!/bin/bash
-export VM_PATH="${HOME}/my_vm_created_by_cli";
+export VM_PATH="${HOME}/goinfre/my_vm_created_by_cli";
 export VDI_FILE="${VM_PATH}/Archlinux_64.vdi"
 export ARCHISO_FILE="${VM_PATH}/archlinux_bootable.iso"
 export ARCHISO_VERSION="2023.03.01"
@@ -37,10 +37,15 @@ attach_archlinux_iso () {
 mkdir -p "${VM_PATH}"
 # create the vm
 create_vm
+echo "created =============================="
 # download GNU/Linux iso
 download_archlinux_iso
+echo "downloaded =============================="
 # set a bootable image
 attach_archlinux_iso
+echo "attached =============================="
 create_vdi
+echo "vdi =============================="
 # create a sata
 create_vm_sata
+echo "sata =============================="
