@@ -6,19 +6,19 @@ DATA = /var/inception
 all:
 	mkdir -p $(DATA)/db
 	mkdir -p $(DATA)/files
-	docker-compose -f $(SRC) up --build -d
+	sudo docker-compose -f $(SRC) up --build -d
 
 down:
 	# docker network rm $(NETWORK)
-	docker compose -f $(SRC) down
+	sudo docker compose -f $(SRC) down
 
 clean:
-	docker system prune --all --force --volumes
+	sudo docker system prune --all --force --volumes
 	$(RM) $(DATA)/db/*
 	$(RM) $(DATA)/files/*
 
 ls:
-	docker ps -a
+	sudo docker ps -a
 
 re: down clean all
 

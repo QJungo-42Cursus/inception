@@ -4,3 +4,4 @@
   - install docker + enable service
   - ?
 - [ ] check path /home/user/data
+- [ ] ssh known host
