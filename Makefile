@@ -20,4 +20,7 @@ ls:
 
 re: clean all
 
+set_domain:
+	(cat /etc/hosts | grep "qjungo.42.fr") || (echo "" | sudo tee -a /etc/hosts && echo "127.0.0.1 qjungo.42.fr" | sudo tee -a /etc/hosts)
+
 .PHONY: all down clean re ls
