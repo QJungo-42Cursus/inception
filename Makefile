@@ -1,21 +1,19 @@
 SRC = srcs/docker-compose.yml
 RM = rm -rf
 NETWORK = inception-network
-DATA = /var/inception
+DATA = /home/qjungo/data
 
 all:
-	mkdir -p $(DATA)/db
-	mkdir -p $(DATA)/files
+	mkdir -p $(DATA)/db $(DATA)/files
 	sudo docker-compose -f $(SRC) up --build -d
 
 down:
-	# docker network rm $(NETWORK)
 	sudo docker compose -f $(SRC) down
 
 clean: down
 	sudo docker system prune --all --force --volumes
-	$(RM) $(DATA)/db/*
-	$(RM) $(DATA)/files/*
+	sudo docker volume rm db files || true
+	sudo $(RM) $(DATA)/db/* $(DATA)/files/*
 
 ls:
 	sudo docker ps -a
