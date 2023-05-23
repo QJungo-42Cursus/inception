@@ -14,9 +14,7 @@ RUN apt-get install -y \
 
 RUN useradd http
 
-COPY ./create-wp.sh /usr/local/bin/create-wp.sh
 COPY ./wp-cli.phar /usr/local/bin/wp
-RUN chmod +x /usr/local/bin/create-wp.sh
 RUN chmod +x /usr/local/bin/wp
 
 COPY ./php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
