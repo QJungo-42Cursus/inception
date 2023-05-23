@@ -14,17 +14,13 @@ RUN apt-get install -y \
 
 COPY ./tools/create-wp.sh /usr/local/bin/create-wp.sh
 COPY ./conf/php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
+COPY ./tools/wp-cli.phar /usr/local/bin/wp-cli.phar
 
 RUN useradd http
 RUN php-fpm7.3 -t
 RUN chmod +x /usr/local/bin/create-wp.sh
+RUN chmod +x /usr/local/bin/wp-cli.phar
 
 WORKDIR /var/www/html
-
-RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-RUN mv wp-cli.phar /usr/local/bin/wp
-RUN chmod +x /usr/local/bin/wp
-
-
 
 ENTRYPOINT [ "create-wp.sh" ]

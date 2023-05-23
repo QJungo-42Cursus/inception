@@ -13,7 +13,7 @@ down:
 clean: down
 	sudo docker system prune --all --force --volumes
 	sudo docker volume rm db files || true
-	sudo $(RM) $(DATA)/db/* $(DATA)/files/*
+	sudo $(RM) $(DATA)
 
 ls:
 	sudo docker ps -a

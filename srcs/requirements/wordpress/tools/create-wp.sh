@@ -1,15 +1,5 @@
 #!/bin/sh
 
-# while true ; do
-# 	sleep 1
-# done
-
-# rm -rf /var/www/html/*
-
-# while ! mysqladmin ping -h"${MYSQL_HOSTNAME}" --silent; do
-# 	sleep 1
-# done
-
 if [ ! -f /var/www/html/wp-config.php ]; then
 	cd /var/www/html
 	rm index.html
@@ -25,22 +15,22 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 	--dbpass="${MYSQL_PASSWORD}" \
 	--allow-root
 	
-	chmod 600 wp-config.php
+	chmod 777 wp-config.php
 
 	wp core install \
 	--url=qjungo.42.fr \
-	--title="Example" \
+	--title="Rust" \
 	--admin_user="${WORDPRESS_ADMIN}" \
 	--admin_password="${WORDPRESS_PASSWORD}" \
 	--admin_email="${WORDPRESS_MAIL}" \
 	--allow-root
 
-	# wp user create \
-	# "${WORDPRESS_USER}" \
-	# "${WORDPRESS_USER_MAIL}" \
-	# --role="author" \
-	# --user_pass="${WORDPRESS_USER_PASSWORD}" \
-	# --allow-root
+	wp user create \
+	"${WORDPRESS_USER}" \
+	"${WORDPRESS_USER_MAIL}" \
+	--role="author" \
+	--user_pass="${WORDPRESS_USER_PASSWORD}" \
+	--allow-root
 fi
 
 php-fpm7.3 -F;
