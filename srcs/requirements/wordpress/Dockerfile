@@ -9,7 +9,8 @@ RUN apt-get install -y \
 	ghostscript \
 	php7.3 \
 	php7.3-fpm \
-	php7.3-mysql
+	php7.3-mysql \
+	mariadb-server
 
 COPY ./tools/create-wp.sh /usr/local/bin/create-wp.sh
 COPY ./conf/php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
@@ -17,5 +18,13 @@ COPY ./conf/php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
 RUN useradd http
 RUN php-fpm7.3 -t
 RUN chmod +x /usr/local/bin/create-wp.sh
+
+WORKDIR /var/www/html
+
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN mv wp-cli.phar /usr/local/bin/wp
+RUN chmod +x /usr/local/bin/wp
+
+
 
 ENTRYPOINT [ "create-wp.sh" ]
