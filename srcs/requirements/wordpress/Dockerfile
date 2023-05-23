@@ -14,12 +14,12 @@ RUN apt-get install -y \
 
 COPY ./create-wp.sh /usr/local/bin/create-wp.sh
 COPY ./php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
-COPY ./wp-cli.phar /usr/local/bin/wp-cli.phar
+COPY ./wp-cli.phar /usr/local/bin/wp
 
 RUN useradd http
 RUN php-fpm7.3 -t
 RUN chmod +x /usr/local/bin/create-wp.sh
-RUN chmod +x /usr/local/bin/wp-cli.phar
+RUN chmod +x /usr/local/bin/wp
 
 WORKDIR /var/www/html
 
