@@ -12,7 +12,7 @@ down:
 	# docker network rm $(NETWORK)
 	sudo docker compose -f $(SRC) down
 
-clean:
+clean: down
 	sudo docker system prune --all --force --volumes
 	$(RM) $(DATA)/db/*
 	$(RM) $(DATA)/files/*
@@ -20,6 +20,6 @@ clean:
 ls:
 	sudo docker ps -a
 
-re: down clean all
+re: clean all
 
 .PHONY: all down clean re ls
