@@ -28,28 +28,28 @@ RUN wp core download \
 	--locale="en_US" \
 	--allow-root
 
-RUN wp core config \
-	--dbname="${MYSQL_DATABASE}" \
-	--dbuser="${MYSQL_USER}" \
-	--dbhost="${MYSQL_HOSTNAME}" \
-	--dbpass="${MYSQL_PASSWORD}" \
-	--allow-root
+# RUN wp core config \
+# 	--dbname="${MYSQL_DATABASE}" \
+# 	--dbuser="${MYSQL_USER}" \
+# 	--dbhost="${MYSQL_HOSTNAME}" \
+# 	--dbpass="${MYSQL_PASSWORD}" \
+# 	--allow-root
 
-RUN chmod 777 wp-config.php
+# RUN chmod 777 wp-config.php
 
-RUN wp core install \
-	--url=qjungo.42.fr \
-	--title="Rust" \
-	--admin_user="${WORDPRESS_ADMIN}" \
-	--admin_password="${WORDPRESS_PASSWORD}" \
-	--admin_email="${WORDPRESS_MAIL}" \
-	--allow-root
+# RUN wp core install \
+# 	--url=qjungo.42.fr \
+# 	--title="Rust" \
+# 	--admin_user="${WORDPRESS_ADMIN}" \
+# 	--admin_password="${WORDPRESS_PASSWORD}" \
+# 	--admin_email="${WORDPRESS_MAIL}" \
+# 	--allow-root
 
-RUN wp user create \
-	"${WORDPRESS_USER}" \
-	"${WORDPRESS_USER_MAIL}" \
-	--role="author" \
-	--user_pass="${WORDPRESS_USER_PASSWORD}" \
-	--allow-root
+# RUN wp user create \
+# 	"${WORDPRESS_USER}" \
+# 	"${WORDPRESS_USER_MAIL}" \
+# 	--role="author" \
+# 	--user_pass="${WORDPRESS_USER_PASSWORD}" \
+# 	--allow-root
 
 ENTRYPOINT [ "php-fpm7.3", "-F" ]
