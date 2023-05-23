@@ -6,6 +6,7 @@ DATA = /home/qjungo/data
 all:
 	mkdir -p $(DATA)/db $(DATA)/files
 	sudo docker-compose -f $(SRC) up --build -d
+	echo "Well done ! You can now go to https://qjungo.42.fr"
 
 down:
 	sudo docker compose -f $(SRC) down
