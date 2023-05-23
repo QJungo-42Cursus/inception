@@ -1,6 +1,8 @@
 #!/bin/sh
 
-if [ ! -f /var/www/html/wp-config.php ]; then
+rm -rf /var/www/html/*
+
+# if [ ! -f /var/www/html/wp-config.php ]; then
 	cd /var/www/html
 	rm index.html
 
@@ -31,6 +33,6 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 	--role="author" \
 	--user_pass="${WORDPRESS_USER_PASSWORD}" \
 	--allow-root
-fi
+# fi
 
 php-fpm7.3 -F;
