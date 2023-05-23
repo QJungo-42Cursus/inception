@@ -12,9 +12,9 @@ RUN apt-get install -y \
 	php7.3-mysql \
 	mariadb-server
 
-COPY ./tools/create-wp.sh /usr/local/bin/create-wp.sh
-COPY ./conf/php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
-COPY ./tools/wp-cli.phar /usr/local/bin/wp-cli.phar
+COPY ./create-wp.sh /usr/local/bin/create-wp.sh
+COPY ./php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
+COPY ./wp-cli.phar /usr/local/bin/wp-cli.phar
 
 RUN useradd http
 RUN php-fpm7.3 -t
