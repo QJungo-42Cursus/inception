@@ -23,7 +23,6 @@ RUN php-fpm7.3 -t
 WORKDIR /var/www/html
 
 RUN rm -rf /var/www/html/*
-RUN rm index.html
 
 RUN wp core download \
 	--locale="en_US" \
